@@ -160,7 +160,8 @@ a separate PSO ([§17](17-other.md#vehicle-handling)).
     not a body: its name matches a small entity-list resource in the levels
     archive (struct `35abc248` plus entity entries of litter, tools,
     boxes). A part reaches it through an `8f58f964` {name, `2850d1b3` =
-    attachment name} modifier.
+    attachment name} modifier. *`2850d1b3` is `propset` (exact
+    case-sensitive joaat match, 2026-11-24).*
   - *This revises the material-set bullet below, where 71 of one car's 75
     part-list names were found in no vehicle resource: many of them are
     shared library parts (not re-counted for that car).*
@@ -178,7 +179,7 @@ a separate PSO ([§17](17-other.md#vehicle-handling)).
     7,908 occurrences across packs, 1,611 in `data.rpf`).
   - The data hashes are defined in a **companion 0x7a resource** per
     vehicle: 41 × `b07176ab` (one per `44cc9d8c`; each with `09bd7c2c`, 32 ×
-    `fe88b23d` {`c6a46bcd` hash, floats}, three lists of `825d57ab`, a list
+    `fe88b23d` {`c6a46bcd` (`componentName`) hash, floats}, three lists of `825d57ab`, a list
     `fc07418c` and two 64-bit values); three tables of exactly 256 entries
     (`f5908771`: six hashes and three 16-byte fields that look like half
     floats; `b5feb11f`; `3d9aef8b`); 3,936 `825d57ab` (41 × 96), 1,312
@@ -370,7 +371,8 @@ a separate PSO ([§17](17-other.md#vehicle-handling)).
   - **Binding** `501ff112` (medium-high): `662d9b79` group, `178cc382`
     channel, `1470edc0` priority and six flags, of which `c8d27281` =
     colour and `7a84e7bf` = surface (`75939b79`, `db4bdec4`, `e2e82803`,
-    `a1f60489` not understood). **Assignment** `b94308f5`: `ca2065a9`
+    `a1f60489` not understood; `e2e82803` is `windowTint` by exact
+    case-sensitive joaat match, 2026-11-24, its effect not checked). **Assignment** `b94308f5`: `ca2065a9`
     channel, `2c89a8d2` colour record (`f1379639`), `7a84e7bf` surface
     record (`9e4de959`), plus `a8167b82`, `b2e15619`, `43394f02`. Applying
     bindings in priority order gives sensible results on four vehicles.
@@ -379,8 +381,8 @@ a separate PSO ([§17](17-other.md#vehicle-handling)).
     colour, so it reads as the body paint (240 of 319 models then gain
     painted panels, e.g. a saloon's rear doors). Colour record `2a13d29a`
     is `black`.
-  - **Option lists** `f5e9d7df` {name, `bf340aab` list of `0caef606`
-    names} (high that they must be followed): a list of parts to choose one
+  - **Option lists** `f5e9d7df` {name, `bf340aab` (`mods`, exact
+    case-sensitive joaat match, 2026-11-24) list of `0caef606` names} (high that they must be followed): a list of parts to choose one
     from (paint finishes, trims, wheel sets: 3 to 10 entries each on one
     sports car). A configuration reaches part of its colour bindings only
     through these lists. Which entry the game picks is unknown.

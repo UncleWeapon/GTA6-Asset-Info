@@ -492,7 +492,8 @@ per-layer vec4s are in [§12](12-materials.md).
   - **Lamp colours** (2026-11-23; links high: 19,799 of 19,808 vehicle
     lamps resolve to a light set by exact id and name matches). *Correction
     to the bullet above:* `066532dd` is the **light set** name hash (the
-    names listed above are set names), and `ea42cb63` is the light
+    names listed above are set names; the field's name is `loadout`, an
+    exact case-sensitive joaat match, 2026-11-24), and `ea42cb63` is the light
     archetype reference. In the vehicle library it is type 0x4d: high
     32 bits the set name again, low 32 bits the archetype's name hash. In
     the packs it is type 0x4f, the archetype's 64-bit id.

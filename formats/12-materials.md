@@ -639,6 +639,8 @@ field `aadeb53e` and `c897af02` are still unnamed.
 
 (2026-11-23.) One PSO in the packs holds 2,714 records of struct
 `eb66d086`, one per ped model, `Name` = joaat of the model name.
+`eb66d086` is `CPedModelInfo__InitData`, the GTA V struct name of a
+`peds.meta` entry (exact case-sensitive joaat match, 2026-11-24).
 
 | Field | Contents | Confidence |
 |---|---|---|

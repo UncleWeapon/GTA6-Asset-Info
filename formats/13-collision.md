@@ -117,6 +117,14 @@ The nine deformable materials are `DEFORM_DIRT_COMPACT`, `_DIRT_LOOSE`,
 `_QUICKSAND`, `_SEAWEED`, `_PLASTIC_MULCH`, `_PERIPHYTON_SOFT`, `_CLAY`,
 `_ALGAE` and `_RUBBISH`. Unmatched names are mostly ped and animal
 body-part materials (`SPINE…`, `THIGH…`) that map collision does not use.
+
+*`DEFAULT`* (2026-11-24; high): `elf("DEFAULT")` gives id **`0x317b`**, the
+generic default surface of [§13.3](#133-inferred-surface-categories) (about
+39 % of collision area). Found by testing 177 GTA V material names
+(`materials.dat` spellings) against the three ids §13.3 describes; chance
+of a hit on one of them is about 177 × 3 / 32749 ≈ 0.016, and the meaning
+fits. No GTA V name (including `GRAVEL_SMALL`, `GRAVEL_LARGE`,
+`GRAVEL_DEEP`, `GRAVEL_TRAIN_TRACK`) gives `2287` or `4180`.
 The remaining ids are most likely materials from the unreadable parts of
 the XML: its first block (file offset `0x20f000`–`0x210a62`) is neither
 zlib nor raw deflate at any start offset, and the block at `0x212190`
@@ -167,7 +175,8 @@ These are categories, not material names.
 (dirt tracks, verges, railway beds), not railway-only. `4180` is 9–21 %
 against 0.13 % of area, in 5,535 clustered bounds files, probably a gravel
 variant (verges, yards). The rest falls on the generic default id `317b`
-and grass ids; the track geometry itself mostly has no up-facing collision
+(`DEFAULT` by the formula of [§13.2](#132-surface-ids), 2026-11-24) and
+grass ids; the track geometry itself mostly has no up-facing collision
 under the sample points. Neither id resolves with the formula of
 [§13.2](#132-surface-ids) from the readable material XML, so their names are
 in the part that is not read, and the labels stay inferred.
