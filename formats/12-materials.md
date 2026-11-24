@@ -598,6 +598,28 @@ field `aadeb53e` and `c897af02` are still unnamed.
   5,943 of 7,994 tile presets carry mask textures. Open: the other flag
   bits, the fifth `tintmaskmap` entry, and how the pattern, stitch, dirt
   and sheen layers are combined.
+- **Later layers** (2026-11-23; medium, read once from the clothing pixel
+  shader):
+  - **Tintable pattern:** the one-texture form of the four mask layers.
+    One four-channel texture (`tintablepatternmap`, on the tile UV) gives
+    R, G, B and A as the four masks, and the layer colours come from
+    `tintablepatterntint`[0–5] instead of `tintmasktint`.
+  - **Stitches:** a four-channel texture on a third UV input, with G as its
+    grey value. The three `stitchtint` colours (+0xec0, +0xed0, +0xee0)
+    each run a gradient over that grey: the first is the base, the second
+    is blended in by the texture's R and the third by its B (each times the
+    tint's alpha); the result replaces the colour by a weight not yet
+    traced. Which texture this is was not identified.
+  - **Dirt:** weight = `dirtmapblendamount` (+0xe30) × the second packed
+    garment map's R; above a threshold the colour is pulled towards a
+    two-colour ramp from `dirttint`[0] and [1] (+0xe34, +0xe38), with
+    `dirtcontrol` at +0xe3c.
+  - The first packed garment map's G (overlay blend, pivot at +0xe18) and B
+    (linear light, pivot at +0xe1c) belong to the albedo-variation
+    parameters (`albedovariationblendamount` is the pair at +0xe20).
+  - The parameter defaults are in none of the 22 indexed archives (raw scan
+    for the parameter hashes, and for the name strings in the two main data
+    archives); 30 of 99 parameter names are still unknown.
 - **Tint bytes** (medium, data only): the wardrobe `Tint0`–`2` bytes do not
   choose between the two `tiletint` entries; over 4,607 colour-tagged items
   the tag fits entry 0 (mean RGB distance 71) better than entry 1 (109)
@@ -630,10 +652,10 @@ field `aadeb53e` and `c897af02` are still unnamed.
 - A second wardrobe field also holds clothing-library preset keys:
   `garmentPreset` `e830a068` of struct `12712917` (every value resolves);
   its role is unknown.
-- Open: 31 parameter names; the file holding the parameter defaults (not
-  located); the source of the per-part blend byte; the role of the kit's
-  `Tint0`–`2` on preset kits; how the mask, pattern, stitch and dirt
-  layers are combined.
+- Open: 30 parameter names; where the parameter defaults come from (not in
+  any indexed archive); the source of the per-part blend byte; the role of the kit's
+  `Tint0`–`2` on preset kits; the stitch weight and texture; the sheen
+  layer.
 
 ### Ped model table
 

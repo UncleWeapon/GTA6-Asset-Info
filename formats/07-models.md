@@ -43,7 +43,7 @@ u32 magic `0x4042` at 0.
 | 8 | 0x4A | 8 | skin joints, **4 × u16**, weights in slot 6 (2026-11-23). On the 284 `_hi` vehicles' LOD 0 meshes: 440 meshes in 159 models (10.4 M vertices: body, trim, door cards); indices stay below the bone count (max 383 of 384); 4 of the 440 have an index that does not resolve. Slot 8 elsewhere: format 0x00 4,644 meshes, 0x25 382, 0x8C 157, none 2,551 | high |
 | 7 | 0x26 | 4 | ped meshes: a second set of 4 skin weights (the 8 weights sum to 255) | confirmed |
 | 9 | 0x25 | 4 | ped meshes: a second set of 4 skin joints, with slot 7 | confirmed |
-| 11 | 0x27 | 4 | tangent R10G10B10A2: xyz = v / 1023 × 2 − 1 (model space); A2 = 3 → bitangent sign w = −1 | confirmed |
+| 11 | 0x27 | 4 | tangent R10G10B10A2: xyz = v / 1023 × 2 − 1 (model space); A2 = 3 → bitangent sign w = −1. **The frame is the second UV set's** (2026-11-23, high on two models with two UV sets: a tank fragment agrees with UV1 on 100 % of its surface and with UV0 on about 50 %, i.e. chance; ped jeans 99.9 % with UV1). cross(n, t) × w runs along +v of UV1 (v down the image), and normal maps are DirectX style (green = +v). Open: the frame for normal maps sampled on UV0, and whether single-UV meshes store a UV0 frame | confirmed; frame high |
 | 12, 13 | 0x26 | 4 | RGBA8 | unknown |
 | 14, 15 | 0x28 | 4 | UV2, UV3 | confirmed |
 | 17 | 0x42 | 8 | ? | unknown |
@@ -625,6 +625,17 @@ the material palette guess:
   is not the colour source: its two material values (the hashes above)
   match nothing in either library, and their role is still unexplained. Where weapon
   tint colours are defined is unknown.
+- **Finishes per part type** (2026-11-23, high, from data): in a weapon
+  family file each `6724161c` variant is a finish for one part type,
+  `c763edb4` = joaat of the part word and `14b064c2` = its layered preset;
+  48 families, 407 part-type lists, 1,300 variants. 36 of 54 part words are
+  named (each re-hashed), among them `barrel` `13f890a9`, `receiver`
+  `aa146920`, `stock` `3c0dd756`, `magazine` `da748070`, `frame`
+  `963ad5a5`, `trigger` `c3afd061`, `bolt` `d278cb8a`, `pgrip` `0d8d8163`,
+  `muzzle` `3af92b85`, `grip` `6fad1258`, `slide` `74e3d185`, `optic`
+  `1301cc6f`, `handguard` `60a91853`, `dustcover` `a9bccac1`, `body`
+  `8c255aa8` and `pump` `66eafecf`. Open: which finish a weapon has by
+  default, the variant names, and 18 part words.
 
 Open: which variant of each slot a weapon carries by default and where part
 colours come from; what mounts on the `WAP_Rail_*` points and how the shared
