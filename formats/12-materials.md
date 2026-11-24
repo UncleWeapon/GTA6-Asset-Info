@@ -578,7 +578,7 @@ field `aadeb53e` and `c897af02` are still unnamed.
   | Block offset | Contents | Parameter |
   |---|---|---|
   | +0x810 + L × 4 | mask texture index; the red channel is the mask | `tintmaskmap`[L] |
-  | +0x310 / +0x390 + L × 0x100 | 2 × 3 UV transform, applied to the same tiling UV as the tile texture | `tintmaskscale`[2L, 2L+1], `tintmaskrotation`[L], `tintmasktranslation`[2L, 2L+1] (`b3643800`) |
+  | +0x310 / +0x390 + L × 0x100 | 2 × 3 UV transform, applied to the same tiling UV as the tile texture. The tiling UV is the garment's **second UV set**, laid out at one scale on every mesh of a garment (2026-11-24) | `tintmaskscale`[2L, 2L+1], `tintmaskrotation`[L], `tintmasktranslation`[2L, 2L+1] (`b3643800`) |
   | +0x31c + L × 0x100 | flags; bit 2 inverts the mask (values seen 8, 0, 12 and rarer ones; the other bits are unknown) | `tintmaskflags`[L] |
   | +0x39c + L × 0x100 | opacity | `tintmaskopacity`[L] |
   | +0xa10 + L × 0x80 | three RGBA-byte gradient stops; second colour set at +0xc10 + L × 0x80 | `tintmasktint`[L], [4 + L] |
