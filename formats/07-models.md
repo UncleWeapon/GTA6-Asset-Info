@@ -647,6 +647,37 @@ resource or decoded PSO in `data.rpf` holds a weapon model's name hash or
 that label, and the label is not joaat of the model name or obvious
 prefixed forms).
 
+## Names recovered by hash (2026-11-24)
+
+Exact case-sensitive joaat matches, each re-computed. The method, the odds and
+the rejected matches are in [§8](08-meta.md#names-recovered-by-hash-2026-11-24).
+*single* marks a name with one match and no sibling name, where the fit to
+the field is the only support.
+
+| Hash | Name | Where | Remark |
+|---|---|---|---|
+| `079baba7` | `attachBone` | bone reference of a part model and of a lamp (u64, bone name hash in the low half) | GTA V name; agrees |
+| `1ff6a884` | `lightAnimations` | `da592d57` pattern names | agrees |
+| `dd466dfe` | `lightGroups` | `da592d57` second name list | agrees with "lamp sets" |
+| `ba860a07` | `VehicleLightEntity` | item struct of a lamp set |  |
+| `804fdca7` | `vehicleLightEntities` | list of those items in a lamp set |  |
+| `1b953013` | `texture64` | pattern `0f93517e` u64, read above as a clock | the name says a 64-bit texture reference |
+| `d3d4919b` | `entityMap` | lamp list of a pattern | *single* |
+| `395039a9` | `entity` | lamp bone name in `69a4bdea` |  |
+| `a478703e` | `lights` | list of steps `67cbceee` |  |
+| `a13c79ef` | `offset` | phase offset of a step | agrees |
+| `fc46055f` | `startColumn` | step u16, read above as part of the flash type |  |
+| `96e5b9a7` | `endColumn` | step u8 beside it |  |
+| `8822fbce` | `volOuterColour` | u8[3] of a light in a light archetype | the map light field of [§15](15-lights.md) |
+| `99d56b7b` | `drawableAssetName` | archetype field that repeats `8bfb6095` (`name64`, [§9](09-placements.md#names-recovered-by-hash-2026-11-24)) | *single* |
+| `72f5e33e` | `WeaponSurface` | `85492dc3` layered preset key | *single*; agrees |
+| `14b064c2` | `Surface` | `6724161c` layered preset | agrees |
+| `c763edb4` | `ElementSlot` | `6724161c` part word | *single* |
+
+`texture64`, `startColumn` and `endColumn` together suggest that a light
+animation is stored as a texture and each light reads a range of its columns.
+That differs from the flash-type reading above and is not tested.
+
 ## Open questions
 
 - Normal top 12 bits; slots 12, 13, 17.

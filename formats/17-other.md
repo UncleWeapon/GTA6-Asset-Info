@@ -1202,6 +1202,31 @@ follows from the text. Copies of one table sit at fixed strides through
   is the big general table (36,888 strings). The puzzle table was only
   reachable once multi-block tables were read correctly (above).
 
+## Names recovered by hash (2026-11-24)
+
+Exact case-sensitive joaat matches, each re-computed. The method, the odds and
+the rejected matches are in [§8](08-meta.md#names-recovered-by-hash-2026-11-24).
+*single* marks a name with one match and no sibling name, where the fit to
+the field is the only support.
+
+| Hash | Name | Where | Remark |
+|---|---|---|---|
+| `93db5464` | `HandlingName` | name hash of a handling row | GTA V name; agrees |
+| `b4e0f8b0` | `ChassisHandlingData` | handling component read as body |  |
+| `6fdd2f18` | `DrivetrainHandlingData` | component read as transmission |  |
+| `88d3a1a3` | `EngineHandlingData` | component read as engine |  |
+| `70317f27` | `FuelHandlingData` | component read as fuel |  |
+| `edf48412` | `WheelsHandlingData` | component read as wheels, steering and brakes |  |
+| `c746f5ed` | `SuspensionHandlingData` | component listed as unknown |  |
+| `bdaf2dc0` | `SuspensionInfo` | component read as suspension |  |
+| `e54c8bcf` | `airboat` | `gameName` value of the `airgator` row | *single*; a value, lower case |
+| `7c0a2099` | `fpsClip` | second clip reference at `+0x68` | *single* |
+| `f791a95f` | `bonetranslation` | track property, XYZ local translation | agrees; sibling of `bonerotation` |
+| `2deefadd` | `genericcontrol` | track property seen with kinds 4, 2 and 0 | *single*; agrees with "can target controls" |
+| `74d00508` | `propertydesc` | pose-rig section of 5 named blocks |  |
+| `6257c371` | `propertydata` | pose-rig section read as the rig path |  |
+
+
 ---
 
 ← [16. Road graph, junctions and flags](16-roads.md) · [Index](README.md) · [18. Radio station audio and scheduling](18-radio.md) →
